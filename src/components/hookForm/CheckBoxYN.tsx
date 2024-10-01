@@ -12,6 +12,7 @@ export default function CheckBoxYN<T extends FieldValues>({ children, name, ...r
   const {
     formState: { errors },
     setValue,
+    watch,
   } = useFormContext<T>();
 
   const handleChangeCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +22,7 @@ export default function CheckBoxYN<T extends FieldValues>({ children, name, ...r
   return (
     <S.CheckBoxYN>
       <label className="checkbox">
-        <input {...rest} type="checkbox" name={name} onChange={handleChangeCheck} />
+        <input {...rest} type="checkbox" name={name} checked={watch(name) === 'Y'} onChange={handleChangeCheck} />
         <span className="checkbox__label">{children}</span>
       </label>
       <ErrorText errors={errors} name={name} />

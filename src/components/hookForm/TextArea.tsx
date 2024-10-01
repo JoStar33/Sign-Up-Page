@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormContext, Path, FieldValues } from 'react-hook-form';
 import ErrorText from './ErrorText';
-import { css, styled } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface Props<T extends FieldValues> extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement> {
   name: Path<T>;
