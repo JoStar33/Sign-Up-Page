@@ -5,15 +5,18 @@ import Theme from '@/styles/Theme';
 import DarkBackground from '@/components/common/DarkBackground';
 import Loading from '@/components/common/Loading';
 import { useLoadingStore } from '@/stores/loading';
+import Router from '@/Router';
+import Layout from '@/components/layouts';
 
 export default function App() {
   const { isLoading } = useLoadingStore();
+
   return (
     <Theme>
       <GlobalStyle />
-      {/* <Layout>
+      <Layout>
         <Router />
-      </Layout> */}
+      </Layout>
       <Portal>
         <AnimatePresence>
           {isLoading && (
