@@ -181,7 +181,7 @@ const S = {
         }
       }
       &__progress-info {
-        width: 140px;
+        width: 150px;
         font-size: 12px;
         font-weight: 500;
         strong {
