@@ -15,8 +15,8 @@ export default function SignUpStepOne({ onSubmit }: Props) {
     <S.SignUpStepOne onSubmit={handleSubmit(onSubmit)}>
       <FormComponent.InputA<SignUpOneStepForm> name="name" label="이름" />
       <FormComponent.InputA<SignUpOneStepForm> name="email" label="이메일" />
-      <FormComponent.InputA<SignUpOneStepForm> name="password" label="비밀번호" type="password" />
-      <FormComponent.InputA<SignUpOneStepForm> name="passwordConfirm" label="비밀번호 확인" type="password" />
+      <FormComponent.PasswordInput<SignUpOneStepForm> name="password" label="비밀번호" type="password" />
+      <FormComponent.PasswordInput<SignUpOneStepForm> name="passwordConfirm" label="비밀번호 확인" type="password" />
       <Button type="submit">다음</Button>
     </S.SignUpStepOne>
   );
