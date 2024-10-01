@@ -12,8 +12,6 @@ interface Props {
 export default function SignUpStepThree({ onSubmit }: Props) {
   const { handleSubmit } = useFormContext<SignUpThreeStepForm>();
 
-  /**TODO: 전체동의 체크박스 만들기 */
-  /**TODO: 동의 문구 개선하기 */
   return (
     <S.SignUpStepThree onSubmit={handleSubmit(onSubmit)}>
       <SignUpStepThreeCheckAllBox />

@@ -23,6 +23,7 @@ export default function SignUpStepOneContainer() {
       password: '',
       passwordConfirm: '',
     },
+    mode: 'onChange',
   });
 
   React.useEffect(() => {

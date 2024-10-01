@@ -21,6 +21,7 @@ export default function SignUpStepTwoContainer() {
       address: '',
       addressDetail: '',
     },
+    mode: 'onChange',
   });
 
   React.useEffect(() => {
