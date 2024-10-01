@@ -1,0 +1,42 @@
+import { SignUpForm, SignUpOneStepForm, SignUpThreeStepForm, SignUpTwoStepForm } from '@/types/auth';
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
+
+interface AuthStore {
+  signUpFormData: SignUpForm;
+  setStepOneData: (data: SignUpOneStepForm) => void;
+  setStepTwoData: (data: SignUpTwoStepForm) => void;
+  setStepThreeData: (data: SignUpThreeStepForm) => void;
+  resetSignUpFormData: () => void;
+}
+
+const initSignUpFormData: SignUpForm = {
+  name: '',
+  email: '',
+  password: '',
+  passwordConfirm: '',
+  phoneNumber: '',
+  address: '',
+  addressDetail: '',
+  agreement: 'N',
+};
+
+//TODO: 암호화해서 데이터 집어넣는법
+export const useAuthStore = create(
+  persist<AuthStore>(
+    (set) => ({
+      signUpFormData: initSignUpFormData,
+      setStepOneData: (data) => set((prev) => ({ ...prev, signUpFormData: { ...prev.signUpFormData, ...data } })),
+      setStepTwoData: (data) => set((prev) => ({ ...prev, signUpFormData: { ...prev.signUpFormData, ...data } })),
+      setStepThreeData: (data) => {
+        if (Object.values(data).every((value) => value === 'Y'))
+          set((prev) => ({ ...prev, signUpFormData: { ...prev.signUpFormData, agreement: 'Y' } }));
+      },
+      resetSignUpFormData: () => set((prev) => ({ ...prev, signUpFormData: initSignUpFormData })),
+    }),
+    {
+      name: 'authStorage',
+      storage: createJSONStorage(() => sessionStorage),
+    },
+  ),
+);
