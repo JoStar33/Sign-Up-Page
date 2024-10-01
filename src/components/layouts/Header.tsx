@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export default function Header() {
-  return <S.Header>Header</S.Header>;
+  return (
+    <S.Header>
+      <img src="/images/logo.png" />
+    </S.Header>
+  );
 }
 
 const S = {
@@ -12,5 +16,10 @@ const S = {
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid black;
+    img {
+      width: 155px;
+      height: 45px;
+      object-fit: cover;
+    }
   `,
 };
