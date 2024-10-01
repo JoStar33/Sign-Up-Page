@@ -22,10 +22,16 @@ export interface SignUpTwoStepForm {
 }
 
 export interface SignUpThreeStepForm {
-  agreement: YNType;
+  agreement1: YNType;
+  agreement2: YNType;
+  agreement3: YNType;
+  agreement4: YNType;
 }
 
-export type SignUpForm = SignUpOneStepForm | SignUpTwoStepForm | SignUpThreeStepForm;
+export type SignUpForm = SignUpOneStepForm &
+  SignUpTwoStepForm & {
+    agreement: YNType;
+  };
 
 /***************************** Request *****************************/
 export type SignUpRequest = Omit<SignUpForm, 'passwordConfirm'>;

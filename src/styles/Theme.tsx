@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './GlobalStyles';
+import styledMedia from './Media';
 
 interface ITheme {
   children: React.ReactNode;
@@ -27,6 +28,7 @@ export default function Theme({ children }: ITheme) {
     <ThemeProvider
       theme={{
         colors,
+        ...styledMedia,
       }}
     >
       <GlobalStyles />
