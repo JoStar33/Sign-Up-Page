@@ -13,12 +13,12 @@ export default function useSignInDataChecker() {
     const isStepTwo = pathname.includes(routerPath.SIGN_UP_STEP_TWO);
     const isStepThree = pathname.includes(routerPath.SIGN_UP_STEP_THREE);
     const isValidOneStep = await schema.signUpOneStepSchema.isValid(signUpFormData);
-    // 회원가입 1차절차를 통과하지 못했는데 2차스탭 or 3차스탭을 접근하려고 시도한다면 >> 강제로 1차스탭으로 이동
+    // 회원가입 1차스탭를 통과하지 못했는데 2차스탭 or 3차스탭을 접근하려고 시도한다면 >> 강제로 1차스탭으로 이동
     if ((!isValidOneStep && isStepTwo) || (!isValidOneStep && isStepThree)) {
       return navigate(routerPath.SIGN_UP_STEP_ONE, { replace: true });
     }
     const isValidTwoStep = await schema.signUpTwoStepSchema.isValid(signUpFormData);
-    // 회원가입 1차절차를 통과했으나 회원가입 2차절차를 통과하지못한 상태에서 3차스탭을 접근하려고 시도한다면 >> 강제로 2차스탭으로 이동
+    // 회원가입 1차스탭를 통과했으나 회원가입 2차스탭를 통과하지못한 상태에서 3차스탭을 접근하려고 시도한다면 >> 강제로 2차스탭으로 이동
     if (!isValidTwoStep && isStepThree) {
       return navigate(routerPath.SIGN_UP_STEP_TWO, { replace: true });
     }
