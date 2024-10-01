@@ -17,7 +17,7 @@ export default function CheckBoxYN<T extends FieldValues>({ children, name, ...r
   const handleChangeCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(name, (event.currentTarget.checked ? 'Y' : 'N') as PathValue<T, Path<T>>);
   };
-
+  /**TODO: 더 세련된 형태로 체크박스 수정하기 */
   return (
     <S.CheckBoxYN>
       <label className="checkbox">

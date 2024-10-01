@@ -1,6 +1,6 @@
 import { colors } from '@/styles/Theme';
 import React from 'react';
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 
 type ButtonType = 'positiveCancel' | 'negativeCancel' | 'neutral' | 'warning' | 'positive' | 'white' | 'custom';
 
@@ -20,6 +20,8 @@ export interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttribute
   children: React.ReactNode;
 }
 
+/**TODO: 모바일에선 Float되는 형태로 바꾸기 */
+
 /**
  * 공용 버튼 컴포넌트
  * @param buttonType -
@@ -30,6 +32,7 @@ export interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttribute
  * - warning: { border: '1px solid', borderColor: black, backgroundColor: gray, color: white }
  * - neutral: { border: '1px solid', borderColor: black, backgroundColor: white, color: black }
  */
+
 export default React.forwardRef<HTMLButtonElement, Props>(function Button(
   {
     margin = '0',
