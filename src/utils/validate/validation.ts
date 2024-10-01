@@ -61,7 +61,7 @@ export const validation = {
       return value === this.resolve(yup.ref('password'));
     }),
   /**핸드폰 번호 유효성 검사. */
-  PHONE_NUMBER: yup.string().required().matches(regex.phone, PHONE_NUMBER_VALID_TEXT),
+  PHONE_NUMBER: yup.string().required().matches(regex.phone, PHONE_NUMBER_VALID_TEXT).required(),
   LOCAL_NUMBER: yup.string().required().matches(regex.localNumber, LOCAL_NUMBER_VALID_TEXT),
   IMAGE_FILES: yup.mixed().required(REQUIRED_MORE_ONE_IMAGE_VALID_TEXT),
   IMAGE_FILE: yup.array().min(1, REQUIRED_IMAGE_VALID_TEXT).required(),

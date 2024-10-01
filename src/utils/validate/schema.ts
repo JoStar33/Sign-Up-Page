@@ -24,7 +24,10 @@ const signUpTwoStepSchema = yup.object({
 
 /**회원가입 세번째 스탭 */
 const signUpThreeStepSchema = yup.object({
-  agreement: validation.REQUIRED_YES_CHECK,
+  agreement1: validation.REQUIRED_YES_CHECK,
+  agreement2: validation.REQUIRED_YES_CHECK,
+  agreement3: validation.REQUIRED_YES_CHECK,
+  agreement4: validation.REQUIRED_YES_CHECK,
 });
 
 /**회원가입*/
