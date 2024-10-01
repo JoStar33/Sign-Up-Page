@@ -1,4 +1,5 @@
 import Button from '@/components/common/Button';
+import FloatButtonWrapper from '@/components/common/FloatButtonWrapper';
 import FormComponent from '@/components/hookForm';
 import { SignUpTwoStepForm } from '@/types/auth';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
@@ -16,7 +17,9 @@ export default function SignUpStepTwo({ onSubmit }: Props) {
       <FormComponent.InputA<SignUpTwoStepForm> name="address" label="주소" />
       <FormComponent.InputA<SignUpTwoStepForm> name="addressDetail" label="상세주소" />
       <FormComponent.InputA<SignUpTwoStepForm> name="phoneNumber" label="핸드폰 번호" mask={['999-9999-9999']} />
-      <Button type="submit">다음</Button>
+      <FloatButtonWrapper>
+        <Button type="submit">다음</Button>
+      </FloatButtonWrapper>
     </S.SignUpStepTwo>
   );
 }

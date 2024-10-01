@@ -1,4 +1,5 @@
 import Button from '@/components/common/Button';
+import FloatButtonWrapper from '@/components/common/FloatButtonWrapper';
 import FormComponent from '@/components/hookForm';
 import { SignUpOneStepForm } from '@/types/auth';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
@@ -17,7 +18,9 @@ export default function SignUpStepOne({ onSubmit }: Props) {
       <FormComponent.InputA<SignUpOneStepForm> name="email" label="이메일" />
       <FormComponent.PasswordInput<SignUpOneStepForm> name="password" label="비밀번호" type="password" />
       <FormComponent.PasswordInput<SignUpOneStepForm> name="passwordConfirm" label="비밀번호 확인" type="password" />
-      <Button type="submit">다음</Button>
+      <FloatButtonWrapper>
+        <Button type="submit">다음</Button>
+      </FloatButtonWrapper>
     </S.SignUpStepOne>
   );
 }

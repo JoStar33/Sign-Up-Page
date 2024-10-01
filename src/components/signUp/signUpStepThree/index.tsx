@@ -4,6 +4,7 @@ import { SignUpThreeStepForm } from '@/types/auth';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import SignUpStepThreeCheckAllBox from './SignUpStepThreeCheckAllBox';
+import FloatButtonWrapper from '@/components/common/FloatButtonWrapper';
 
 interface Props {
   onSubmit: SubmitHandler<SignUpThreeStepForm>;
@@ -19,7 +20,9 @@ export default function SignUpStepThree({ onSubmit }: Props) {
       <FormComponent.CheckBoxYN<SignUpThreeStepForm> name="agreement2">(필수) 개인정보 수집이용동의</FormComponent.CheckBoxYN>
       <FormComponent.CheckBoxYN<SignUpThreeStepForm> name="agreement3">(필수) 개인정보 처리 위탁동의</FormComponent.CheckBoxYN>
       <FormComponent.CheckBoxYN<SignUpThreeStepForm> name="agreement4">(필수) 개인정보 열람동의</FormComponent.CheckBoxYN>
-      <Button type="submit">회원가입하기</Button>
+      <FloatButtonWrapper>
+        <Button type="submit">회원가입하기</Button>
+      </FloatButtonWrapper>
     </S.SignUpStepThree>
   );
 }
