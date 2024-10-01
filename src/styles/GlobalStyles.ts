@@ -30,15 +30,6 @@ const GlobalStyle = createGlobalStyle`
       background-color: #c4c4c4;
       border-radius: 10px;
     }
-
-    
-  }
-
-  .custom-magnify-cursor {
-    background-color: white;
-    img {
-      object-fit: cover;
-    }
   }
 
   a {
@@ -62,7 +53,7 @@ const GlobalStyle = createGlobalStyle`
     appearance: none;
   }
 
-  select{
+  select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -76,18 +67,6 @@ const GlobalStyle = createGlobalStyle`
   select:focus {
     outline: none;
     cursor: pointer;
-  }
-  .infinite-scroll-wrapper{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .ql-align-center{
-    text-align: center;
-  }
-  .ql-align-right{
-    text-align: center;
   }
   @media screen and (max-width: 768px) {
     * {
