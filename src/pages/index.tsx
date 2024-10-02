@@ -1,3 +1,3 @@
-export default function indexPage() {
-  return <>index</>;
+export default function HomePage() {
+  return <>Home</>;
 }

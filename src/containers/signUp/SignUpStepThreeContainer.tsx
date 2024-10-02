@@ -38,7 +38,9 @@ export default function SignUpStepThreeContainer() {
     try {
       const response = await postSignUp(signUpFormData);
       if (response.code !== 200) throw new Error(response.message);
-      navigate(routerPath.SIGN_UP_COMPLETE);
+      navigate(routerPath.SIGN_UP_COMPLETE, {
+        state: response.value,
+      });
     } catch {
       navigate(routerPath.SIGN_UP);
     } finally {

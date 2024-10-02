@@ -9,7 +9,7 @@ const authPostHandler = [
     return CustomResponse({
       code: 200,
       message: '성공!',
-      value: undefined,
+      value: 'aggrew;nndop;sgboiasber;o',
     });
   }),
 ];

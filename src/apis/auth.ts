@@ -6,7 +6,7 @@ import { requests } from '.';
 /** POST **/
 /**회원가입 */
 export const postSignUp = (body: Auth.SignUpRequest) => {
-  return requests.post('/auth/sign-up', body);
+  return requests.post<Auth.SignUpResponse>('/auth/sign-up', body);
 };
 
 /** PUT **/

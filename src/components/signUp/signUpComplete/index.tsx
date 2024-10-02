@@ -1,10 +1,18 @@
 import Button from '@/components/common/Button';
 import Icon from '@/components/common/Icon';
+import routerPath from '@/constants/routerPath';
 import { flexCenter } from '@/styles/Common';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function SignUpComplete() {
+  const navigate = useNavigate();
+
+  const handleRouteHome = () => {
+    navigate(routerPath.HOME);
+  };
+
   return (
     <S.SignUpComplete>
       <div className="robot-icon-wrapper">
@@ -20,7 +28,7 @@ export default function SignUpComplete() {
         <strong>클로봇</strong>에서 이루세요.
       </motion.p>
       <motion.div animate={{ opacity: [0, 1] }} transition={{ duration: 0.6, delay: 3 }}>
-        <Button>홈으로 이동</Button>
+        <Button onClick={handleRouteHome}>홈으로 이동</Button>
       </motion.div>
     </S.SignUpComplete>
   );
