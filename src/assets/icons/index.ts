@@ -4,5 +4,7 @@ import Close3 from './close3.svg?react';
 import Check from './check.svg?react';
 import Heart from './heart.svg?react';
 import Robot from './robot.svg?react';
+import ErrorRobot from './errorRobot.svg?react';
+import NotFoundRobot from './notFoundRobot.svg?react';
 
-export { Close1, Close2, Close3, Check, Heart, Robot };
+export { Close1, Close2, Close3, Check, Heart, Robot, ErrorRobot, NotFoundRobot };

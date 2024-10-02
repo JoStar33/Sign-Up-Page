@@ -20,8 +20,6 @@ export interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttribute
   children: React.ReactNode;
 }
 
-/**TODO: 모바일에선 Float되는 형태로 바꾸기 */
-
 /**
  * 공용 버튼 컴포넌트
  * @param buttonType -

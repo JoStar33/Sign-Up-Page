@@ -8,6 +8,8 @@ import SignUpStepOnePage from '@/pages/signUp/SignUpStepOnePage';
 import SignUpStepTwoPage from '@/pages/signUp/SignUpStepTwoPage';
 import SignUpStepThreePage from '@/pages/signUp/SignUpStepThreePage';
 import SignUpCompletePage from '@/pages/signUp/SignUpCompletePage';
+import NotFound from '@/pages/NotFound';
+import SignUpFailPage from './pages/signUp/SignUpFail';
 
 export default function Router() {
   return (
@@ -17,11 +19,13 @@ export default function Router() {
         <Route path={routerPath.SIGN_UP_STEP_ONE} element={<SignUpStepOnePage />} />
         <Route path={routerPath.SIGN_UP_STEP_TWO} element={<SignUpStepTwoPage />} />
         <Route path={routerPath.SIGN_UP_STEP_THREE} element={<SignUpStepThreePage />} />
-        <Route path={routerPath.SIGN_UP_COMPLETE} element={<SignUpCompletePage />} />
+        <Route path={routerPath.SIGN_UP_FAIL} element={<SignUpFailPage />} />
       </Route>
       <Route element={<PrivateRoute />}>
         <Route path={routerPath.HOME} element={<HomePage />} />
       </Route>
+      <Route path={routerPath.SIGN_UP_COMPLETE} element={<SignUpCompletePage />} />
+      <Route path="/*" element={<NotFound />} />
     </Routes>
   );
 }
