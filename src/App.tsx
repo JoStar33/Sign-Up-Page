@@ -1,5 +1,4 @@
 import { AnimatePresence } from 'framer-motion';
-import Portal from '@/components/common/Portal';
 import GlobalStyle from '@/styles/GlobalStyles';
 import Theme from '@/styles/Theme';
 import DarkBackground from '@/components/common/DarkBackground';
@@ -17,15 +16,13 @@ export default function App() {
       <Layout>
         <Router />
       </Layout>
-      <Portal>
-        <AnimatePresence>
-          {isLoading && (
-            <DarkBackground>
-              <Loading mode="fixed" />
-            </DarkBackground>
-          )}
-        </AnimatePresence>
-      </Portal>
+      <AnimatePresence>
+        {isLoading && (
+          <DarkBackground>
+            <Loading mode="fixed" />
+          </DarkBackground>
+        )}
+      </AnimatePresence>
     </Theme>
   );
 }
