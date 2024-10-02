@@ -40,33 +40,17 @@ export default function SignUpStepThreeSummitInfo({ setIsShow, fetchSignUp }: Pr
   return (
     <S.SignUpStepThreeSummitInfo variants={modalVariants} animate="visible" initial="hidden" exit="hidden">
       <div className="modal__header">
-        <div className="modal__header__mock" />
         <p className="modal__header__title">회원가입을 하시겠습니까?</p>
         <Icon name="Close2" width="28px" height="28px" onClick={handleClose} />
       </div>
       <Line isVertical={false} height="1px" />
       <div className="modal__body">
         <p className="modal__body__sub-title">아래 정보가 맞는지 다시한번만 확인해주세요.</p>
-        <div className="modal__body__user-info">
-          <strong>이름: </strong>
-          {signUpFormData.name}
-        </div>
-        <div className="modal__body__user-info">
-          <strong>이메일: </strong>
-          {signUpFormData.email}
-        </div>
-        <div className="modal__body__user-info">
-          <strong>휴대번호: </strong>
-          {signUpFormData.phoneNumber}
-        </div>
-        <div className="modal__body__user-info">
-          <strong>주소명: </strong>
-          {signUpFormData.address}
-        </div>
-        <div className="modal__body__user-info">
-          <strong>주소상세명: </strong>
-          {signUpFormData.addressDetail}
-        </div>
+        <div className="modal__body__user-info">👨{signUpFormData.name}</div>
+        <div className="modal__body__user-info">📒{signUpFormData.email}</div>
+        <div className="modal__body__user-info">📱{signUpFormData.phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}</div>
+        <div className="modal__body__user-info">🏠{signUpFormData.address}</div>
+        <div className="modal__body__user-info">✨{signUpFormData.addressDetail}</div>
       </div>
       <Button onClick={handleSignUp}>회원가입 진행</Button>
     </S.SignUpStepThreeSummitInfo>
@@ -90,7 +74,7 @@ const S = {
         padding: 5px 0px;
         &__title {
           font-weight: 600;
-          font-size: 20px;
+          font-size: 30px;
           margin-top: 10px;
         }
         &__mock {
@@ -99,7 +83,7 @@ const S = {
         }
       }
       &__body {
-        height: calc(100% - 120px);
+        height: calc(100% - 130px);
         display: flex;
         flex-direction: column;
         gap: 15px;
@@ -109,7 +93,10 @@ const S = {
           font-weight: 600;
         }
         &__user-info {
-          font-size: 13px;
+          font-size: 25px;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
           strong {
             font-weight: 700;
             font-size: 15px;
