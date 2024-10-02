@@ -1,5 +1,5 @@
+import CompleteAnimation from '@/components/common/CompleteAnimation';
 import SignUpStepOne from '@/components/signUp/signUpStepOne';
-import routerPath from '@/constants/routerPath';
 import useSignInDataChecker from '@/hooks/useSignInDataChecker';
 
 import { useAuthStore } from '@/stores/auth';
@@ -8,11 +8,10 @@ import { schema } from '@/utils/validate/schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import React from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 export default function SignUpStepOneContainer() {
-  const navigate = useNavigate();
   useSignInDataChecker();
+  const [isSuccessAnimateShow, setIsSuccessAnimateShow] = React.useState(false);
   const setStepOneData = useAuthStore((store) => store.setStepOneData);
   const signUpFormData = useAuthStore((store) => store.signUpFormData);
   const oneStepMethods = useForm<SignUpOneStepForm>({
@@ -32,13 +31,17 @@ export default function SignUpStepOneContainer() {
   }, []);
 
   const onSubmit: SubmitHandler<SignUpOneStepForm> = (submitData) => {
+    if (isSuccessAnimateShow) return;
     setStepOneData(submitData);
-    navigate(routerPath.SIGN_UP_STEP_TWO);
+    setIsSuccessAnimateShow(true);
   };
 
   return (
-    <FormProvider {...oneStepMethods}>
-      <SignUpStepOne onSubmit={onSubmit} />
-    </FormProvider>
+    <>
+      {isSuccessAnimateShow && <CompleteAnimation pathName="SIGN_UP_STEP_TWO" />}
+      <FormProvider {...oneStepMethods}>
+        <SignUpStepOne onSubmit={onSubmit} />
+      </FormProvider>
+    </>
   );
 }

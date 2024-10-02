@@ -4,6 +4,7 @@ import FormComponent from '@/components/hookForm';
 import { SignUpOneStepForm } from '@/types/auth';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
+import SignUpStepTitle from '@/components/signUp/SignUpStepTitle';
 
 interface Props {
   onSubmit: SubmitHandler<SignUpOneStepForm>;
@@ -14,6 +15,7 @@ export default function SignUpStepOne({ onSubmit }: Props) {
 
   return (
     <S.SignUpStepOne onSubmit={handleSubmit(onSubmit)}>
+      <SignUpStepTitle>STEP1. 회원 기본정보</SignUpStepTitle>
       <FormComponent.InputA<SignUpOneStepForm> name="name" label="이름" />
       <FormComponent.InputA<SignUpOneStepForm> name="email" label="이메일" />
       <FormComponent.PasswordInput<SignUpOneStepForm> name="password" label="비밀번호" type="password" />
@@ -30,5 +32,10 @@ const S = {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    .title {
+      font-size: 25px;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
   `,
 };
