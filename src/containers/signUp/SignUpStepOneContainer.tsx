@@ -2,7 +2,7 @@ import CompleteAnimation from '@/components/common/CompleteAnimation';
 import SignUpStepOne from '@/components/signUp/signUpStepOne';
 import useSignInDataChecker from '@/hooks/useSignInDataChecker';
 
-import { useAuthStore } from '@/stores/auth';
+import { getSignUpDecryptionData, useAuthStore } from '@/stores/auth';
 import { SignUpOneStepForm } from '@/types/auth';
 import { schema } from '@/utils/validate/schema';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,7 +13,7 @@ export default function SignUpStepOneContainer() {
   useSignInDataChecker();
   const [isSuccessAnimateShow, setIsSuccessAnimateShow] = React.useState(false);
   const setStepOneData = useAuthStore((store) => store.setStepOneData);
-  const signUpFormData = useAuthStore((store) => store.signUpFormData);
+  const signUpDecryptionData = getSignUpDecryptionData();
   const oneStepMethods = useForm<SignUpOneStepForm>({
     resolver: yupResolver(schema.signUpOneStepSchema),
     defaultValues: {
@@ -26,7 +26,7 @@ export default function SignUpStepOneContainer() {
   });
 
   React.useEffect(() => {
-    oneStepMethods.reset(signUpFormData);
+    oneStepMethods.reset(signUpDecryptionData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

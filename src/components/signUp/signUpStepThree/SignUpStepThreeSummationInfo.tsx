@@ -1,7 +1,7 @@
 import Button from '@/components/common/Button';
 import Icon from '@/components/common/Icon';
 import Line from '@/components/common/Line';
-import { useAuthStore } from '@/stores/auth';
+import { getSignUpDecryptionData } from '@/stores/auth';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
@@ -30,7 +30,7 @@ const modalVariants = {
 };
 
 export default function SignUpStepThreeSummitInfo({ setIsShow, fetchSignUp }: Props) {
-  const signUpFormData = useAuthStore((state) => state.signUpFormData);
+  const signUpDecryptionData = getSignUpDecryptionData();
   const handleClose = () => {
     setIsShow(false);
   };
@@ -46,11 +46,11 @@ export default function SignUpStepThreeSummitInfo({ setIsShow, fetchSignUp }: Pr
       <Line isVertical={false} height="1px" />
       <div className="modal__body">
         <p className="modal__body__sub-title">아래 정보가 맞는지 다시한번만 확인해주세요.</p>
-        <div className="modal__body__user-info">👨{signUpFormData.name}</div>
-        <div className="modal__body__user-info">📒{signUpFormData.email}</div>
-        <div className="modal__body__user-info">📱{signUpFormData.phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}</div>
-        <div className="modal__body__user-info">🏠{signUpFormData.address}</div>
-        <div className="modal__body__user-info">✨{signUpFormData.addressDetail}</div>
+        <div className="modal__body__user-info">👨{signUpDecryptionData.name}</div>
+        <div className="modal__body__user-info">📒{signUpDecryptionData.email}</div>
+        <div className="modal__body__user-info">📱{signUpDecryptionData.phoneNumber.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3')}</div>
+        <div className="modal__body__user-info">🏠{signUpDecryptionData.address}</div>
+        <div className="modal__body__user-info">✨{signUpDecryptionData.addressDetail}</div>
       </div>
       <Button onClick={handleSignUp}>회원가입 진행</Button>
     </S.SignUpStepThreeSummitInfo>
@@ -59,7 +59,7 @@ export default function SignUpStepThreeSummitInfo({ setIsShow, fetchSignUp }: Pr
 
 const S = {
   SignUpStepThreeSummitInfo: styled(motion.div)`
-    width: 100%;
+    width: calc(100% - 30px);
     max-width: 500px;
     margin: 15px;
     height: 600px;

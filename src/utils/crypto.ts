@@ -2,11 +2,11 @@ import CryptoJS from 'crypto-js';
 import environment from '@/environment';
 
 export const crypto = {
-  encryptionAES: (plainText: string | number) => {
-    if (!plainText) {
+  encryptionAES: (plain: any) => {
+    if (!plain) {
       throw new Error('data is require');
     }
-    const b64 = CryptoJS.AES.encrypt(JSON.stringify(plainText), environment.cryptoKey).toString();
+    const b64 = CryptoJS.AES.encrypt(JSON.stringify(plain), environment.cryptoKey).toString();
     const e64 = CryptoJS.enc.Base64.parse(b64);
     const eHex = e64.toString(CryptoJS.enc.Hex);
     return eHex;
@@ -20,8 +20,9 @@ export const crypto = {
       if (!plain) {
         return null;
       }
-      return plain;
+      return JSON.parse(plain);
     }
+    return null;
   },
   encryptionBASE64: (plainText: string | number) => {
     if (!plainText) {

@@ -4,7 +4,7 @@ import SignUpStepThree from '@/components/signUp/signUpStepThree';
 import SignUpStepThreeSummitInfo from '@/components/signUp/signUpStepThree/SignUpStepThreeSummationInfo';
 import routerPath from '@/constants/routerPath';
 import useSignInDataChecker from '@/hooks/useSignInDataChecker';
-import { useAuthStore } from '@/stores/auth';
+import { getSignUpDecryptionData, useAuthStore } from '@/stores/auth';
 import { useLoadingStore } from '@/stores/loading';
 import { SignUpThreeStepForm } from '@/types/auth';
 import { schema } from '@/utils/validate/schema';
@@ -16,10 +16,11 @@ import { useNavigate } from 'react-router-dom';
 
 export default function SignUpStepThreeContainer() {
   const navigate = useNavigate();
+  const signUpDecryptionData = getSignUpDecryptionData();
+  const signUpFormData = useAuthStore((state) => state.signUpFormData);
   useSignInDataChecker();
   const { setIsLoading, isLoading } = useLoadingStore();
   const setStepThreeData = useAuthStore((store) => store.setStepThreeData);
-  const signUpFormData = useAuthStore((store) => store.signUpFormData);
   const [isShow, setIsShow] = React.useState(false);
   const threeStepMethods = useForm<SignUpThreeStepForm>({
     resolver: yupResolver(schema.signUpThreeStepSchema),
@@ -55,7 +56,7 @@ export default function SignUpStepThreeContainer() {
   };
 
   React.useEffect(() => {
-    if (signUpFormData.agreement === 'Y') {
+    if (signUpDecryptionData.agreement === 'Y') {
       threeStepMethods.reset({
         agreement1: 'Y',
         agreement2: 'Y',
