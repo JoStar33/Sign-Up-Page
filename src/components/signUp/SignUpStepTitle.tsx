@@ -7,7 +7,7 @@ interface Props {
 
 export default function SignUpStepTitle({ children }: Props) {
   return (
-    <S.SignUpStepTitle className="title" animate={{ x: [-20, 0], opacity: [0, 1] }}>
+    <S.SignUpStepTitle className="title" initial={{ opacity: 0 }} animate={{ x: [-20, 0], opacity: [0, 1] }}>
       {children}
     </S.SignUpStepTitle>
   );

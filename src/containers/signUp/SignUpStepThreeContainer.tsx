@@ -43,7 +43,7 @@ export default function SignUpStepThreeContainer() {
         state: response.value,
       });
     } catch {
-      navigate(routerPath.SIGN_UP);
+      navigate(routerPath.SIGN_UP_FAIL);
     } finally {
       setIsLoading(false);
     }

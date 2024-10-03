@@ -18,16 +18,16 @@ export default function SignUpComplete() {
       <div className="robot-icon-wrapper">
         <Icon name="Robot" width="200px" height="200px" />
       </div>
-      <motion.p animate={{ opacity: [0, 1] }} transition={{ duration: 0.6 }}>
+      <motion.p initial={{ opacity: 0 }} animate={{ opacity: [0, 1] }} transition={{ duration: 0.6 }}>
         회원가입이 완료됐습니다.
       </motion.p>
-      <motion.p animate={{ opacity: [0, 1] }} transition={{ duration: 0.6, delay: 1 }}>
+      <motion.p initial={{ opacity: 0 }} animate={{ opacity: [0, 1] }} transition={{ duration: 0.6, delay: 1 }}>
         이제 당신이 꿈꾸는 모든걸
       </motion.p>
-      <motion.p animate={{ opacity: [0, 1] }} transition={{ duration: 0.6, delay: 2 }}>
+      <motion.p initial={{ opacity: 0 }} animate={{ opacity: [0, 1] }} transition={{ duration: 0.6, delay: 2 }}>
         <strong>클로봇</strong>에서 이루세요.
       </motion.p>
-      <motion.div animate={{ opacity: [0, 1] }} transition={{ duration: 0.6, delay: 3 }}>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: [0, 1] }} transition={{ duration: 0.6, delay: 3 }}>
         <Button onClick={handleRouteHome}>홈으로 이동</Button>
       </motion.div>
     </S.SignUpComplete>
