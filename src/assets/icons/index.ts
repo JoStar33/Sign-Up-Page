@@ -6,5 +6,6 @@ import Heart from './heart.svg?react';
 import Robot from './robot.svg?react';
 import ErrorRobot from './errorRobot.svg?react';
 import NotFoundRobot from './notFoundRobot.svg?react';
+import CheckOnly from './checkOnly.svg?react';
 
-export { Close1, Close2, Close3, Check, Heart, Robot, ErrorRobot, NotFoundRobot };
+export { Close1, Close2, Close3, Check, Heart, Robot, ErrorRobot, NotFoundRobot, CheckOnly };
