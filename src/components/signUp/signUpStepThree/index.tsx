@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import SignUpStepThreeCheckAllBox from './SignUpStepThreeCheckAllBox';
 import FloatButtonWrapper from '@/components/common/FloatButtonWrapper';
 import SignUpStepTitle from '../SignUpStepTitle';
+import FloatBackButton from '@/components/common/FloatBackButton';
 
 interface Props {
   onSubmit: SubmitHandler<SignUpThreeStepForm>;
@@ -25,6 +26,7 @@ export default function SignUpStepThree({ onSubmit }: Props) {
       <FloatButtonWrapper>
         <Button type="submit">회원가입하기</Button>
       </FloatButtonWrapper>
+      <FloatBackButton />
     </S.SignUpStepThree>
   );
 }

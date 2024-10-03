@@ -5,6 +5,7 @@ import { SignUpOneStepForm } from '@/types/auth';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 import SignUpStepTitle from '@/components/signUp/SignUpStepTitle';
+import FloatBackButton from '@/components/common/FloatBackButton';
 
 interface Props {
   onSubmit: SubmitHandler<SignUpOneStepForm>;
@@ -23,6 +24,7 @@ export default function SignUpStepOne({ onSubmit }: Props) {
       <FloatButtonWrapper>
         <Button type="submit">다음</Button>
       </FloatButtonWrapper>
+      <FloatBackButton />
     </S.SignUpStepOne>
   );
 }
@@ -30,6 +32,7 @@ export default function SignUpStepOne({ onSubmit }: Props) {
 const S = {
   SignUpStepOne: styled.form`
     display: flex;
+    position: relative;
     flex-direction: column;
     gap: 10px;
     .title {

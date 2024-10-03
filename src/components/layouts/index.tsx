@@ -29,6 +29,7 @@ const S = {
         background-color: ${(props) => props.theme.colors.white};
         position: relative;
         overflow: hidden;
+        transform: rotate(1);
         width: 100%;
         max-width: 700px;
         height: 100dvh;
@@ -38,7 +39,6 @@ const S = {
         flex-direction: column;
         padding: 15px;
         position: relative;
-        transform: rotate(1);
         height: calc(100dvh - 60px);
         min-width: 100%;
       }
