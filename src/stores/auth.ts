@@ -22,7 +22,6 @@ const initSignUpFormData: SignUpForm = {
   agreement: 'N',
 };
 
-//TODO: 암호화해서 데이터 집어넣는법
 export const useAuthStore = create(
   persist<AuthStore>(
     (set) => ({
