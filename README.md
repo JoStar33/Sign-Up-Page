@@ -1,50 +1,32 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+# 다단계 회원가입 폼 개발 과제
+## 설치 및 실행 방법
+- 먼저 node_modules 설치를 해주세요. 패키지 매니저로는 pnpm을 사용했기에 아래 명령어로 설치바랍니다.
+  - pnpm i
+- .env 파일을 만들어주시고 아래 정보를 명시해주세요.
+  - VITE_REACT_SERVER_URL = 임의의 URL
+  - VITE_REACT_CRYPTO_KEY = 임의의 키
+- vite를 사용했기때문에 실행시에는 아래 명령어를 사용해주세요.
+  - pnpm run dev
+## 사용한 기술 스택과 라이브러리 목록
+- react & vite
+  - SEO최적화라던가 초기로드되는 화면의 속도를 고려하지 않아도 되는 과제라는 판단을 했습니다. 이에, Next.js 사용을 안하는게 좋겠다고 결론을 냈고 React만을 사용했습니다. 또한 빠른 실행속도와 반영속도로 인해 개발편의성을 증대시킬 수 있는 vite를 사용했습니다.
+- react-hook-form & @hookform/error-message & @hookform/resolvers & yup & use-mask-input
+  - 안정적인 유효성 검사와 상태변화의 최소화 및 상태코드를 다수 줄일 수 있는 react-hook-form을 사용했습니다.
+  - 선언적이고 간결하게 유효성 검사를 처리하기위해 yup을 사용했으며 yup과 관련된 예외처리 스키마 코드들은 /src/utils/validate폴더에 따로 관리중입니다.
+  - @hookform/error-message를 활용하여 직관적이고 간결하게 유효성 검증에서 막힌 에러 메시지들을 노출하도록 했습니다.
+  - use-mask-input을 활용해 사용자가 입력한 핸드폰 번호 or 사업자 번호 or 계좌번호와 같은 번호들이 사용자들이 평상시에 보던 일반적인 형태(XXX-XXXX-XXXX)로 보일 수 있도록 하기위해 사용했습니다.
+- styled-components & styled-reset
+  - 가장 대중적으로 쓰이며, 디자인 토큰설정 & 브레이크 포인트 설정이 쉬운 스타일드 컴포넌트를 사용했습니다. 이와더불어 브라우저에 기본적으로 설정돼있는 스타일들을 초기화하기위해 styled-reset을 사용했습니다.
+- framer-motion
+  - 사용자에게 다체로운 애니메이션을 보여주기 위해 사용했으며 리액트와 스타일드 컴포넌트 친화적인 코드를 작성할 수 있기에 사용했습니다.
+- react-error-boundary
+  - 사용자가 보는 사이트내에서 예상치못한 에러가 발생했을때 에러메시지와 더불어 취할 수 있는 액션들을 제공하기 위해 에러 바운더리를 사용했습니다.
+- crypto-js
+  - 사용자가 입력한 정보들이 암호화되도록 하기위해 사용했습니다. 사용자가 입력한 정보가 로컬스토리지에 저장될때 & 서버로 전송될때는 모두 암호화가 이루어집니다.
+- zustand
+  - redux와 동일한 flux 패턴 기반의 안정적인 상태관리가 가능하며, 훨씬적은 초기작성 코드로 인해 사용하게 됐습니다. 또한 recoil과 비교했을때 꾸준히 업데이트가 이루어지고 메모리 누수와 관련된 이슈도 없기에 선택하게 됐습니다.
+- msw
+  - API 모킹을 위해 사용했습니다.
+## 추가 구현 사항
+- 사용자의 스탭이 마무리됐다면, 그에따른 스탭마무리 애니메이션이 동작하도록 만들었습니다.
+- 로컬스토리지를 활용해 사용자의 정보가 담길 수 있도록 만들었습니다.
