@@ -18,7 +18,7 @@ export default function SignUpStepTwo({ onSubmit }: Props) {
       <SignUpStepTitle>STEP2. 회원 상세정보</SignUpStepTitle>
       <FormComponent.InputA<SignUpTwoStepForm> name="address" label="주소" />
       <FormComponent.InputA<SignUpTwoStepForm> name="addressDetail" label="상세주소" />
-      <FormComponent.InputA<SignUpTwoStepForm> name="phoneNumber" label="핸드폰 번호" mask={['999-9999-9999']} />
+      <FormComponent.InputA<SignUpTwoStepForm> name="phoneNumber" label="핸드폰 번호" mask={['999-9999-9999']} enterKey />
       <FloatButtonWrapper>
         <Button type="submit">다음</Button>
       </FloatButtonWrapper>
