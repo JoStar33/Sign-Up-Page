@@ -1,5 +1,5 @@
 import React from 'react';
-import { useFormContext, Path, FieldValues } from 'react-hook-form';
+import { useFormContext, Path, FieldValues, useWatch } from 'react-hook-form';
 import ErrorText from './ErrorText';
 import styled, { css } from 'styled-components';
 
@@ -30,11 +30,13 @@ export default function TextArea<T extends FieldValues>({
   const {
     register,
     setFocus,
-    watch,
+    control,
     formState: { errors },
   } = useFormContext<T>();
 
-  const textAreaWatchValue = watch(name);
+  const watchValue = useWatch({ control });
+
+  const textAreaWatchValue = watchValue[name];
 
   React.useEffect(() => {
     if (isFocusing) {

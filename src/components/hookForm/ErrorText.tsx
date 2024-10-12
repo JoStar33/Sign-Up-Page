@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { ErrorMessage } from '@hookform/error-message';
-import { FieldErrors, FieldValues } from 'react-hook-form';
+import { FieldErrors, FieldValues, Path } from 'react-hook-form';
 
-interface Props {
-  name: string;
+interface Props<T> {
+  name: Path<T>;
   errors: FieldErrors<FieldValues>;
   margin?: string;
 }
 
-export default function ErrorText({ name, errors, margin }: Props) {
+export default function ErrorText<T extends FieldValues>({ name, errors, margin }: Props<T>) {
   return (
     <S.ErrorText margin={margin}>
       <ErrorMessage errors={errors} name={name} />

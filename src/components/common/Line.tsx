@@ -2,7 +2,7 @@ import { colors } from '@/styles/Theme';
 import styled from 'styled-components';
 
 interface Props {
-  isVertical: boolean;
+  isVertical?: boolean;
   width?: string;
   height?: string;
   margin?: string;

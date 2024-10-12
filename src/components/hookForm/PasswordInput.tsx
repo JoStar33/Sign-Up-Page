@@ -1,6 +1,6 @@
 import React, { KeyboardEventHandler } from 'react';
 import styled, { css } from 'styled-components';
-import { useFormContext, Path, FieldValues } from 'react-hook-form';
+import { useFormContext, Path, FieldValues, useWatch } from 'react-hook-form';
 import ErrorText from '@/components/hookForm/ErrorText';
 import { colors } from '@/styles/Theme';
 import { motion } from 'framer-motion';
@@ -70,22 +70,26 @@ export default function PasswordInput<T extends FieldValues>({
     formState: { errors },
     register,
     setFocus,
-    watch,
+    control,
     clearErrors,
   } = useFormContext<T>();
 
-  const watchValue = watch(name);
+  const watchValue = useWatch({
+    control,
+  });
+
+  const nameWatchValue = watchValue[name];
 
   const strengthOfCryptographic = () => {
     let count = 0;
     // 대문자 체크
-    if (/[A-Z]/.test(watchValue)) count++;
+    if (/[A-Z]/.test(nameWatchValue)) count++;
     // 소문자 체크
-    if (/[a-z]/.test(watchValue)) count++;
+    if (/[a-z]/.test(nameWatchValue)) count++;
     // 숫자 체크
-    if (/\d/.test(watchValue)) count++;
+    if (/\d/.test(nameWatchValue)) count++;
     // 특수문자 체크
-    if (/[!@#$%^&*(),.?":{}|<>]/.test(watchValue)) count++;
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(nameWatchValue)) count++;
     return count;
   };
 
@@ -94,8 +98,9 @@ export default function PasswordInput<T extends FieldValues>({
   };
 
   React.useEffect(() => {
-    if (watchValue && watchValue.length !== 0) clearErrors(name);
-  }, [clearErrors, name, watchValue]);
+    if (nameWatchValue && nameWatchValue.length !== 0) clearErrors(name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, nameWatchValue]);
 
   React.useEffect(() => {
     if (isFocusing) setFocus(name);
@@ -142,7 +147,7 @@ export default function PasswordInput<T extends FieldValues>({
             />
           </div>
         </div>
-        {visibleError && <ErrorText errors={errors} name={name} />}
+        {visibleError && <ErrorText<T> errors={errors} name={name} />}
       </div>
     </S.PasswordInput>
   );

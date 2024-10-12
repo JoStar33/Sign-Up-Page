@@ -1,6 +1,6 @@
 import React, { KeyboardEventHandler } from 'react';
 import styled, { css } from 'styled-components';
-import { useFormContext, Path, FieldValues } from 'react-hook-form';
+import { useFormContext, Path, FieldValues, useWatch } from 'react-hook-form';
 import { useHookFormMask } from 'use-mask-input';
 import ErrorText from '@/components/hookForm/ErrorText';
 
@@ -43,20 +43,25 @@ export default function InputA<T extends FieldValues>({
     formState: { errors },
     register,
     setFocus,
-    watch,
     clearErrors,
+    control,
   } = useFormContext<T>();
   const registerWithMask = useHookFormMask(register);
 
-  const watchValue = watch(name);
+  const watchValue = useWatch({
+    control,
+  });
+
+  const nameWatchValue = watchValue[name];
 
   const handleKeyDown: KeyboardEventHandler = (event) => {
     if (!enterKey && event.key === 'Enter') event.preventDefault();
   };
 
   React.useEffect(() => {
-    if (watchValue && watchValue.length !== 0) clearErrors(name);
-  }, [clearErrors, name, watchValue]);
+    if (nameWatchValue && nameWatchValue.length !== 0) clearErrors(name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, nameWatchValue]);
 
   React.useEffect(() => {
     if (isFocusing) setFocus(name);
@@ -81,7 +86,7 @@ export default function InputA<T extends FieldValues>({
           {...(mask ? registerWithMask(name, mask, { autoUnmask: true }) : register(name))}
           {...rest}
         />
-        {visibleError && <ErrorText errors={errors} name={name} />}
+        {visibleError && <ErrorText<T> errors={errors} name={name} />}
       </div>
     </S.InputA>
   );

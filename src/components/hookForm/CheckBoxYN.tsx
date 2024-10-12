@@ -1,5 +1,5 @@
 import React from 'react';
-import { FieldValues, Path, PathValue, useFormContext } from 'react-hook-form';
+import { FieldValues, Path, PathValue, useFormContext, useWatch } from 'react-hook-form';
 import styled from 'styled-components';
 import ErrorText from '@/components/hookForm/ErrorText';
 import Icon from '@/components/common/Icon';
@@ -13,23 +13,35 @@ export default function CheckBoxYN<T extends FieldValues>({ children, name, ...r
   const {
     formState: { errors },
     setValue,
-    watch,
+    clearErrors,
+    control,
   } = useFormContext<T>();
+
+  const watchValue = useWatch({
+    control,
+  });
+
+  const nameWatchValue = watchValue[name];
 
   const handleChangeCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(name, (event.currentTarget.checked ? 'Y' : 'N') as PathValue<T, Path<T>>);
   };
 
+  React.useEffect(() => {
+    if (nameWatchValue && nameWatchValue.length !== 0) clearErrors(name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, nameWatchValue]);
+
   return (
     <S.CheckBoxYN>
       <label className="checkbox">
-        <input {...rest} type="checkbox" name={name} checked={watch(name) === 'Y'} onChange={handleChangeCheck} />
+        <input {...rest} type="checkbox" name={name} checked={nameWatchValue === 'Y'} onChange={handleChangeCheck} />
         <span className="icon-box">
           <Icon name="CheckOnly" width="16" height="16" />
         </span>
         <span className="checkbox__label">{children}</span>
       </label>
-      <ErrorText errors={errors} name={name} />
+      <ErrorText<T> errors={errors} name={name} />
     </S.CheckBoxYN>
   );
 }
